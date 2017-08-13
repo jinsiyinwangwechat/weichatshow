@@ -20,6 +20,7 @@
                 <option value="0"></option>
                 <option value="1"></option>
             </select>
+
         </div>
         <div style="clear: both"></div>
         <div style="margin-top: 30px">
