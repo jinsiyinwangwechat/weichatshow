@@ -22,6 +22,15 @@ class FactoryController extends Controller
         $this->factoryService = $factoryService;
     }
 
+    /**
+     * 工厂列表页面
+     * @param Request $request
+     * @return mixed
+     */
+    public function listPage(Request $request) {
+
+        return view("test.list");
+    }
 
     /**
      * 工厂列表
