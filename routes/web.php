@@ -16,10 +16,9 @@ Route::get('/', function () {
 });
 
 Route::any('/wechat', 'WechatController@serve');
-
-
-Route::any('/detail/factory', 'FactoryController@getFactoryDetail');
+Route::any('/factory/detail', 'FactoryController@getFactoryDetail');
 Route::get('/factory/listPage', 'FactoryController@listPage');
+Route::get('/factory/detailPage', 'FactoryController@detailPage');
 Route::get('/factory/list','FactoryController@getFactoryList');
 Route::get('/factory/search', 'FactoryController@searchFactory');
 Route::any('/do/collection', 'FactoryController@doCollection');

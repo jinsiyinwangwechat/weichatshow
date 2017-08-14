@@ -21,6 +21,11 @@ class FactoryService
         $this->factoryRepository = $factoryRepository;
     }
 
+    public function getVillageList() {
+        $villages = array('安平镇','黄城镇','两洼乡','大子文镇','马店镇','南五庄镇','大河庄乡','油子乡','开发区','旧工业园区','饶阳工业区','深州工业区');
+        return $villages;
+    }
+
     /**
      * @param $params
      * @return \Illuminate\Support\Collection
