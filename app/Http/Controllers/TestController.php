@@ -27,6 +27,7 @@ class TestController extends Controller
        // $openId = $this->getOpenId();
         $params = $request->all();
 
+
         $user = session('wechat.oauth_user');
 
 
