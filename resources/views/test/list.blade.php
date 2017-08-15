@@ -61,7 +61,7 @@
     function displayTable(response) {
         if (response.code==0 && response.info && response.info.length > 0) {
             for (var i in response.info) {
-                $("#village-div a").attr("href", "/weichatshow/public/factory/detailPage?factory_id=" + response.info[i].id);
+                $("#village-div a").attr("href", "/factory/detailPage?factory_id=" + response.info[i].id);
                 $("#village-div #name").html(response.info[i].name);
                 $("#village-div #address").html(response.info[i].address);
                 $("#village-div #contact1").html(response.info[i].connect1);
@@ -88,7 +88,7 @@
         var orderFlag = $("#order-input").attr("checked");
         var orderBy = (!!orderFlag)?'desc':'asc';
         $.ajax({
-            url: "/weichatshow/public/factory/list?ts=" + new Date().getTime(),
+            url: "/factory/list?ts=" + new Date().getTime(),
             dataType: "json",
             data: {page: from, town: village, order_by: orderBy},
             success: function (response) {

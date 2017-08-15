@@ -123,7 +123,7 @@
         var factoryId = $("#factory-id-input").val();
         if(!!factoryId) {
             $.ajax({
-                url : '/weichatshow/public/factory/detail?factory_id=' + factoryId,
+                url : '/factory/detail?factory_id=' + factoryId,
                 type : 'get',
                 dataType : 'json',
                 success : function(response) {
