@@ -118,4 +118,9 @@ class FactoryService
 
         return $factoryInfo->toArray();
     }
+
+    public function getCollectionList($params)
+    {
+        return $this->factoryRepository->getCollectionList($params);
+    }
 }

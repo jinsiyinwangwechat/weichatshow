@@ -36,6 +36,7 @@ class FactoryController extends Controller
     /**
      * 工厂详情页面
      * @param Request $request
+     * @return $this
      */
     public function detailPage(Request $request) {
         $factoryId  = $request->get('factory_id');
@@ -128,6 +129,15 @@ class FactoryController extends Controller
         $openId = 'sdfsdfsdf';
 
         $result = $this->factoryService->getFactoryDetail($factoryId);
+
+        return $this->outJsonFormat($result);
+    }
+
+    public function getCollectionList(Request $request)
+    {
+        $openid = $this->getOpenId();
+
+        $result = $this->factoryService->getCollectionList($openid);
 
         return $this->outJsonFormat($result);
     }

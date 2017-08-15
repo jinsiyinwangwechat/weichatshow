@@ -186,7 +186,7 @@ class FactoryRepository
     public function getFactoryFriendLink($factoryId)
     {
         $factoryFriend = $this->friendFactoryModel->query()
-            ->where('orgin_factory_id', $factoryId)
+            ->where('origin_factory_id', $factoryId)
             ->get();
 
         return $factoryFriend;
@@ -199,5 +199,15 @@ class FactoryRepository
             ->get();
 
         return $classifyInfo;
+    }
+
+    public function getCollectionList($params){
+        $openid = array_get($params, 'openid', 0);
+
+        $collectionList = $this->collectionModel->query()
+            ->where('openid', $openid)
+            ->get();
+ //
+        return $collectionList;
     }
 }
