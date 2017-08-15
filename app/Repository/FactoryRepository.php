@@ -45,17 +45,17 @@ class FactoryRepository
     {
         $page        = array_get($params, 'page', 1);
         $perPage     = array_get($params, 'per_page', 10);
+        $orderBy     = array_get($params, 'order_by', 'desc');
 
         $skip = $page > 1 ? ($page - 1) * $perPage : 0;
-        $conditions  = array_only($params, ['town','valliage']);
+        $conditions  = array_only($params, ['town','village']);
 
         $query = $this->factoryModel->query();
 
         foreach ($conditions as $key => $item){
            $query = $query->where($key , $item);
         }
-           $factoryList = $query->where('id', '<' ,10)
-               ->orderBy('collection','desc')
+           $factoryList = $query->orderBy('collection','desc')
                ->skip($skip)
                ->take($perPage)
                ->get();
