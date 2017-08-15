@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 
 use App\Service\FactoryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class FactoryController extends Controller
 {
@@ -22,6 +21,14 @@ class FactoryController extends Controller
         $this->factoryService = $factoryService;
     }
 
+    /**
+     * 我的收藏页面
+     */
+    public function collectListPage() {
+        $openid = 'sdfsdfsdf';
+        $result = $this->factoryService->getCollectionList($openid);
+        return view("test.my")->with('collections', $result);
+    }
     /**
      * 工厂列表页面
      * @param Request $request
