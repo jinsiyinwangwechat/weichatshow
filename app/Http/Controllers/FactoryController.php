@@ -22,7 +22,25 @@ class FactoryController extends Controller
         $this->factoryService = $factoryService;
     }
 
+    /**
+     * 工厂列表页面
+     * @param Request $request
+     * @return mixed
+     */
+    public function listPage(Request $request)
+    {
+        $village = $this->factoryService->getVillageList();
+        return view("test.list")->with('village', $village);
+    }
 
+    /**
+     * 工厂详情页面
+     * @param Request $request
+     */
+    public function detailPage(Request $request) {
+        $factoryId  = $request->get('factory_id');
+        return view("test.detail")->with('factoryId', $factoryId);
+    }
     /**
      * 工厂列表
      * @param Request $request
@@ -99,7 +117,6 @@ class FactoryController extends Controller
 
     public function getFactoryDetail(Request $request)
     {
-        return "工厂详情页期待中，文字先奉上";
         $this->validate($request, [
            'factory_id' => 'required'
         ],[
