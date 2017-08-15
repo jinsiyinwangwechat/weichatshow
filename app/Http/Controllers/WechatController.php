@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\FactoryService;
+use App\Service\UserService;
 use EasyWeChat\Foundation\Application;
 use GuzzleHttp\Psr7\Request;
 use Log;
@@ -11,14 +12,17 @@ class WechatController extends Controller
 {
     private $wechat;
     private $factoryService;
+    private $userService;
 
     public function __construct(
         Application    $wechat,
-        FactoryService $factoryService
+        FactoryService $factoryService,
+        UserService    $userService
     )
     {
         $this->wechat         = $wechat;
         $this->factoryService = $factoryService;
+        $this->userService    = $userService;
     }
     /**
      * 处理微信的请求消息
@@ -43,6 +47,30 @@ class WechatController extends Controller
             }*/
             switch ($message->MsgType) {
                 case 'event':
+                    switch ($message->Event) {
+                        case 'subscribe':
+                            $user = session('wechat.oauth_user');
+                            $openId = array_get($user, 'id', false);
+                            $name   = array_get($user, 'name', '');
+                            $nick   = array_get($user, 'nick', '');
+                            $sex    = array_get($user, 'sex', '');
+
+                            $data = [
+                                'openid'    => $openId,
+                                'username'  => $name,
+                                'nick'      => $nick,
+                                'sex'       => $sex
+                            ];
+                            $this->userService->createUser($data);
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
+
+
+
+
                     return '收到事件消息';
                     break;
                 case 'text':

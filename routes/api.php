@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::any('/detail/factory', 'FactoryController@getFactoryDetail');
 Route::get('/factory/list','FactoryController@getFactoryList');
+Route::get('/factory/detail','FactoryController@getFactoryDetail');
 Route::get('/factory/search', 'FactoryController@searchFactory');
 Route::any('/do/collection', 'FactoryController@doCollection');
 Route::post('/cancel/collection', 'FactoryController@doCollection');

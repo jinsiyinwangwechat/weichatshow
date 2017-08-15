@@ -7,6 +7,7 @@ use App\Model\CollectionModel;
 use App\Model\FactoryModel;
 use App\Model\FriendFactoryModel;
 use App\Model\PictureModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -185,8 +186,15 @@ class FactoryRepository
 
     public function getFactoryFriendLink($factoryId)
     {
-        $factoryFriend = $this->friendFactoryModel->query()
-            ->where('origin_factory_id', $factoryId)
+        $factoryFriend = DB::table('think_origin_friend_factory')
+            ->select(
+                "think_origin_friend_factory.id",
+                'think_origin_friend_factory.origin_factory_id',
+                'think_origin_friend_factory.friend_factory_id',
+                'think_map.name'
+            )
+            ->join('think_map' ,'think_map.id' ,'=', 'think_origin_friend_factory.friend_factory_id')
+            ->where('think_origin_friend_factory.origin_factory_id', $factoryId)
             ->get();
 
         return $factoryFriend;
@@ -201,12 +209,18 @@ class FactoryRepository
         return $classifyInfo;
     }
 
-    public function getCollectionList($params){
-        $openid = array_get($params, 'openid', 0);
+    public function getCollectionList($openid){
 
-        $collectionList = $this->collectionModel->query()
-            ->where('openid', $openid)
+        $collectionList =DB::table('think_collection')
+            ->select(
+                "think_map.id",
+                'think_map.name',
+                'think_map.collection'
+            )
+            ->join('think_map' ,'think_map.id' ,'=', 'think_collection.factory_id')
+            ->where('think_collection.openid', $openid)
             ->get();
+
  //
         return $collectionList;
     }

@@ -37,8 +37,8 @@ class Controller extends BaseController
 
     protected function getOpenId(){
         $user = session('wechat.oauth_user');
-        return $user;
         $openId = array_get($user, 'id', false);
+
         if($openId === false){
             Log::info('openid did not get with user info' . json_encode($user));
             throw new \Exception('没有openid!');
