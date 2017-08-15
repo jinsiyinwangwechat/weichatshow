@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="{CHARSET}">
+    <meta charset="{CHARSET}" name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="{{URL::asset("/assets/jquery/mobile/jquery.mobile-1.4.5.css")}}">
     <script type="text/javascript" src="{{URL::asset("/assets/jquery/jquery-1.8.3.min.js")}}"></script>
     <script type="text/javascript" src="{{URL::asset("/assets/jquery/mobile/jquery.mobile-1.4.5.js")}}"></script>
@@ -9,7 +9,7 @@
 <body>
 <div data-role="page" id="service-div">
     <div data-role="header" data-position="fixed" style="height: 42px">
-        <h1>工厂列表</h1>
+        <h2>工厂列表</h2>
     </div>
     <div data-role="content" style="font-size: 10px">
         <div data-role="fieldcontain">
@@ -41,7 +41,7 @@
 
 <div id="village-div" style="display: none">
     <li>
-        <a href="#" data-transition="slide">
+        <a href="#" data-ajax="false">
             <span style="display: inline;font-size: 10px">
                 <span id="name" class="md-span" style="font-size: 12px"></span><br/>
                 <span id="address" class="md-span" style="white-space: pre-wrap"></span><br/>
@@ -90,7 +90,7 @@
         $.ajax({
             url: "/weichatshow/public/factory/list?ts=" + new Date().getTime(),
             dataType: "json",
-            data: {page: from, town: village, orderby: orderBy},
+            data: {page: from, town: village, order_by: orderBy},
             success: function (response) {
                 displayTable(response);
             }

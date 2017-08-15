@@ -21,6 +21,7 @@ Route::get('/factory/listPage', 'FactoryController@listPage');
 Route::get('/factory/detailPage', 'FactoryController@detailPage');
 Route::get('/factory/list','FactoryController@getFactoryList');
 Route::get('/factory/search', 'FactoryController@searchFactory');
+Route::get('/factory/my', 'FactoryController@collectListPage');
 Route::any('/do/collection', 'FactoryController@doCollection');
 Route::post('/cancel/collection', 'FactoryController@doCollection');
 
