@@ -22,6 +22,14 @@ class FactoryController extends Controller
     }
 
     /**
+     * 删除收藏确认页面
+     * @param Request $request
+     */
+    public function removeCollectionDialog(Request $request) {
+        $factoryId = $request->get('factory_id');
+        return view("test.confirm")->with('factory_id', $factoryId);
+    }
+    /**
      * 我的收藏页面
      */
     public function collectListPage() {

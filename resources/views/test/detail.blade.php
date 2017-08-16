@@ -12,19 +12,19 @@
 
     <div data-role="header" data-position="right" style="height: 42px" data-display="overlay">
         <h2>工厂详情</h2>
-        <a href="#nav-panel" data-icon="home" data-iconpos="notext">Menu</a>
-        <a href="/weichatshow/public/factory/my" data-icon="user" data-iconpos="notext">User</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-icon="home" data-iconpos="notext">Menu</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-icon="user" data-iconpos="notext">User</a>
     </div>
     <input type="hidden" id="factory-id-input" value="{{$factoryId}}"/>
     <div data-role="content" style="font-size: 10px;">
         <div id="preview-div" class="info-div">
             <div>
                 <h3 class="ui-bar ui-bar-a ui-corner-all" style="margin-top: 0px">基本信息</h3>
-                <div style="width: 30%;float:left">
+                <div style="width: 40%;float:left">
                     <div id="pic" style="padding: 2px; border: solid 1px #EEEEEE"></div>
                 </div>
-                <div style="width: 70%;float: left;">
-                    <table style="padding-left: 10px;">
+                <div style="width: 60%;float: left;">
+                    <table class="info-table" style="padding-left: 10px;">
                         <tr>
                             <td colspan="2">
                                 <div id="name" style="font-size: 13px;font-weight: bold"></div>
@@ -43,7 +43,7 @@
                     </table>
                 </div>
                 <div style="clear: both"></div>
-                <table>
+                <table class="info-table" style="margin-top: 5px;">
                     <tr>
                         <td style="vertical-align: top" width="36px">地址：</td>
                         <td><span id="address"></span></td>
@@ -64,7 +64,7 @@
             </div>
             <div>
                 <h3 class="ui-bar ui-bar-a ui-corner-all">位置信息</h3>
-                <table>
+                <table class="info-table">
                     <tr>
                         <td style="vertical-align: top">编号：</td>
                         <td>
@@ -87,7 +87,7 @@
             </div>
             <div>
                 <h3 class="ui-bar ui-bar-a ui-corner-all">友情链接</h3>
-                <table>
+                <table class="info-table">
                 <tr>
                     <td>
                         <span id="friend_link"></span>
@@ -153,26 +153,31 @@
         var links = factory.friendLink;
         if(!!links && links.length>0) {
             for(var i in links) {
-
+                $("#friend_link").append("<a data-ajax='false' href='{{env('CURRENT_SERVER')}}/factory/detailPage?factory_id=" + links[i].id + "'>"+ links[i].name +"</a>")
             }
+        } else {
+            $("#friend_link").html("暂无");
         }
 
         var classifys = factory.classify;
         if(!!classifys && classifys.length>0) {
             for(var i in classifys) {
-                $("#small_classify").append(classifys[i].small_classify + "&nbsp;&nbsp;");
+                $("#small_classify").append("<span class='tag'>" + classifys[i].small_classify + "</span>&nbsp;&nbsp;");
             }
+        } else {
+            $("#small_classify").html("暂无");
         }
 
         var pictures = factory.pictures;
         if(!!pictures && pictures.length>0) {
             var firstPic = pictures[0].url;
-            $("#pic").html("<a href='#pictures'><img width='100%' src='/weichatshow/public/pictures"+ firstPic +"'/></a>")
+            $("#pic").html("<a href='#pictures'><img width='100%' src='{{env('REMOTE_PIC_SERVER')}}" + firstPic +"'/></a>")
             for(var i in pictures) {
-                $("#image_div").append("<a href='#'  style='width:45%;padding: 2px; border: solid 1px #EEEEEE;float:left'><img width='100%' src='/weichatshow/public/pictures"+ firstPic +"'/></a>");
+                $("#image_div").append("<a href='#'  style='width:45%;padding: 2px; border: solid 1px #EEEEEE;float:left'><img width='100%' src='{{env('REMOTE_PIC_SERVER') }}" + pictures[i].url +"'/></a>");
             }
         } else {
-            $("#pic").html("<a href='#pictures'><img width='100%' src='/weichatshow/public/pictures/no_picture.jpg'/></a>")
+            $("#pic").html("<a href='#pictures'><img width='100%' src='{{env('PIC_SERVER')}}/no_picture.jpg'/></a>")
+            $("#image_div").html("暂无");
         }
 
 
@@ -181,6 +186,7 @@
     $(function(){
         loadDetail();
     })
+
 </script>
 </body>
 </html>
