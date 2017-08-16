@@ -104,13 +104,13 @@
     <div data-role="footer" data-position="fixed">
         <div class="ui-grid-b">
             <div class="ui-block-a">
-                <a href="#" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-phone">打电话</a>
+                <a href="#" id="make-phone" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-phone">打电话</a>
             </div>
             <div class="ui-block-b" style="text-align: center">
                 <a href="http://m.amap.com/navi/?start=115.524137,38.242731&dest=115.519545,38.228472&destName=刘成测试地图选点&key=175cd59f097bc8498dd2e4e8f3868cd2" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation">去这里</a>
             </div>
             <div class="ui-block-c" style="text-align: right">
-                <a href="#" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-star">收藏&nbsp;&nbsp;&nbsp;</a>
+                <a href="javascript:collection()" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-star">收藏&nbsp;&nbsp;&nbsp;</a>
             </div>
         </div>
 
@@ -118,7 +118,20 @@
 </div>
 
 <script type="text/javascript">
-
+    function collection() {
+        $.ajax({
+            url : '/do/collection?factory_id=' + factoryId,
+            type : 'get',
+            dataType : 'json',
+            success : function(response) {
+                if(response && response.code==0) {
+                    alert("添加收藏成功")
+                } else {
+                    alert("添加收藏失败")
+                }
+            }
+        })
+    }
     function loadDetail() {
         var factoryId = $("#factory-id-input").val();
         if(!!factoryId) {
@@ -144,6 +157,7 @@
         $("#address").html(factory.address);
         $("#contact").html(factory.connect1 + ((!!factory.connect2)?"&nbsp;&nbsp;" + factory.connect2:""))
         $("#telephone").html(factory.telephone + ((!!factory.telephone2)?"<br/>" + factory.telephone2:""));
+        $("#make-phone").attr("href", "tel:" + factory.telephone);
         $("#weixin").html(factory.weichat1);
 
         $("#code").html(factory.id);
