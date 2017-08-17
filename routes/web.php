@@ -24,8 +24,9 @@ Route::get('/factory/my', 'FactoryController@collectListPage');
 Route::any('/do/collection', 'FactoryController@doCollection');
 Route::post('/cancel/collection', 'FactoryController@doCollection');
 
-Route::group([ 'middleware' => ['wechat.oauth']], function () {
 
+Route::group([ 'middleware' => ['wechat.oauth']], function () {
+    Route::any('/map/show', 'FactoryController@mapShow');
     Route::any('/test', 'TestController@test');
     Route::get('/factory/listPage', 'FactoryController@listPage');
     Route::get('/factory/detailPage', 'FactoryController@detailPage');

@@ -6,6 +6,8 @@ use App\Service\FactoryService;
 use App\Service\UserService;
 use EasyWeChat\Foundation\Application;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
 use Log;
 
 class WechatController extends Controller
@@ -45,16 +47,21 @@ class WechatController extends Controller
                     Log::info('location位置:' . $message->Latitude . $message->Longitude);
                 }
             }*/
+
             switch ($message->MsgType) {
                 case 'event':
+                    $user = session('wechat.oauth_user');
+
+                    $openId = $message->FromUserName;
+                    $name   = array_get($user, 'name', '');
+                    $nick   = array_get($user, 'nick', '');
+                    $sex    = array_get($user, 'sex', '');
+                    $location = $message->Latitude.$message->Longitude;
+                    //session([$openId => $message->Latitude.$message->Longitude]);
+
+                    $re = Redis::set($openId,$location);
                     switch ($message->Event) {
                         case 'subscribe':
-                            $user = session('wechat.oauth_user');
-                            $openId = array_get($user, 'id', false);
-                            $name   = array_get($user, 'name', '');
-                            $nick   = array_get($user, 'nick', '');
-                            $sex    = array_get($user, 'sex', '');
-
                             $data = [
                                 'openid'    => $openId,
                                 'username'  => $name,
@@ -71,7 +78,7 @@ class WechatController extends Controller
 
 
 
-                    return '收到事件消息';
+                    return ;
                     break;
                 case 'text':
                     $params = [

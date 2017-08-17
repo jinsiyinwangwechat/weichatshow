@@ -11,6 +11,8 @@ namespace App\Http\Controllers;
 
 use App\Service\FactoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
 
 class FactoryController extends Controller
 {
@@ -38,6 +40,28 @@ class FactoryController extends Controller
     {
         $village = $this->factoryService->getVillageList();
         return view("test.list")->with('village', $village);
+    }
+
+    public function mapShow(Request $request)
+    {
+        $params = $request->all();
+
+        $targetLatitude  = array_get($params, 'latitude');
+        $targetLongitude = array_get($params, 'longitude');
+        $factoryName     = array_get($params, 'name');
+        $targetLongitude = '116.412012';
+        $targetLatitude  = '39.984443';
+        $target          = $targetLongitude . ',' .$targetLatitude;
+        $openid = $this->getOpenId();
+
+        $myLocation = Redis::get($openid);
+
+
+        $url = "http://m.amap.com/navi/?start=$myLocation&dest=$target&destName=$factoryName&key=175cd59f097bc8498dd2e4e8f3868cd2";
+
+        return redirect()->secure($url);
+
+
     }
 
     /**
