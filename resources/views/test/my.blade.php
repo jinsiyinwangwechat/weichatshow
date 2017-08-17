@@ -26,6 +26,16 @@
 </div>
 
 <script type="text/javascript">
+    function doRemoveConfirm(factory_id){
+        $.ajax({
+            url : "{{env('CURRENT_SERVER')}}/cancel/collection?factory_id=" + factory_id,
+            type : 'get',
+            dataType : 'json',
+            success : function(response) {
+
+            }
+        })
+    }
 </script>
 </body>
 </html>

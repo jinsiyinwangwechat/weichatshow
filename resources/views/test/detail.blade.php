@@ -118,7 +118,9 @@
 </div>
 
 <script type="text/javascript">
+
     function collection() {
+        var factoryId = $("#factory-id-input").val();
         $.ajax({
             url : '/do/collection?factory_id=' + factoryId,
             type : 'get',

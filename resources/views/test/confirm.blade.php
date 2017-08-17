@@ -16,22 +16,9 @@
         <div role="main" class="ui-content">
             <h1>确认取消收藏吗？</h1>
             <p>你还可以重新在工厂详情页添加</p>
-            <a href="javascript:doRemoveConfirm()" class="ui-btn ui-shadow ui-corner-all ui-btn-a">确认</a>
+            <a href="javascript:doRemoveConfirm('{{$factory_id}}')" class="ui-btn ui-shadow ui-corner-all ui-btn-a">确认</a>
             <a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">取消</a>
         </div>
 </div>
-
-<script type="text/javascript">
-    function doRemoveConfirm(){
-        $.ajax({
-            url : '{{env('CURRENT_SERVER')}}/cancel/collection?factory_id={{$factory_id}}',
-            type : 'get',
-            dataType : 'json',
-            success : function(response) {
-
-            }
-        })
-    }
-</script>
 </body>
 </html>
