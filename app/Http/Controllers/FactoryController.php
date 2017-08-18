@@ -49,6 +49,16 @@ class FactoryController extends Controller
     }
 
     /**
+     * 工厂检索页面
+     * @param Request $request
+     * @return mixed
+     */
+    public function searchPage()
+    {
+        return view("test.search");
+    }
+
+    /**
      * 工厂详情页面
      * @param Request $request
      * @return $this

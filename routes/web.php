@@ -25,7 +25,8 @@ Route::any('/do/collection', 'FactoryController@doCollection');
 Route::get('/cancel/collection', 'FactoryController@doCollection');
 
 
-    Route::any('/test', 'TestController@test');
-    Route::get('/factory/listPage', 'FactoryController@listPage');
-    Route::get('/factory/detailPage', 'FactoryController@detailPage');
+Route::any('/test', 'TestController@test');
+Route::get('/factory/listPage', 'FactoryController@listPage');
+Route::get('/factory/searchPage', 'FactoryController@searchPage');
+Route::get('/factory/detailPage', 'FactoryController@detailPage');
 
