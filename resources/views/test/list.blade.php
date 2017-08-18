@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="{CHARSET}" name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" />
+    <meta charset="{CHARSET}" name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset("/assets/jquery/mobile/jquery.mobile-1.4.5.css")}}">
     <script type="text/javascript" src="{{URL::asset("/assets/jquery/jquery-1.8.3.min.js")}}"></script>
     <script type="text/javascript" src="{{URL::asset("/assets/jquery/mobile/jquery.mobile-1.4.5.js")}}"></script>
@@ -14,21 +15,38 @@
         <a href="{{env('CURRENT_SERVER')}}/factory/my" data-icon="user" data-iconpos="notext">User</a>
     </div>
     <div data-role="content" style="font-size: 10px;padding-top:0px">
-        <div data-role="fieldcontain">
-            <label for="village" style="font-size: 10px">乡镇:</label>
-            <select id="village-input" onchange="doSearch()" style="font-size: 10px">
-                <option value="">请选择...</option>
-                @foreach($village as $v)
-                    <option value="{{$v}}" style="font-size: 10px">{{$v}}</option>
-                @endforeach
-            </select>
+        <div data-role="tabs">
+                
+            <div data-role="navbar">
+                        
+                <ul>
+                    <li><a href="#one" data-theme="a" data-ajax="false" class="ui-btn-active ui-state-persist">one</a></li>
+                    <li><a href="#two" data-theme="a" data-ajax="false">two</a></li>
+                </ul>
+            </div>
+            <div id="one">
+                <div data-role="fieldcontain">
+                    <label for="village" style="font-size: 10px">乡镇:</label>
+                    <select id="village-input" onchange="doSearch()" style="font-size: 10px">
+                        <option value="">请选择...</option>
+                        @foreach($village as $v)
+                            <option value="{{$v}}" style="font-size: 10px">{{$v}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div data-role="fieldcontain" style="padding: 3px 0px">
+                    <input id="order-input" type="checkbox" onchange="doSearch()"/>
+                    <label for="order-input">按收藏数升序</label>
+                </div>
+            </div>
+            <div id="two">
+                <div data-role="fieldcontain">
+                     <label for="class-input">小类</label>
+                    <input id="class-input"/>
+                </div>
+            </div>
         </div>
-        <div data-role="fieldcontain">
-            <input id="order-input" type="checkbox" onchange="doSearch()"/>
-            <label for="order-input">按收藏数升序</label>
-        </div>
-        <div style="clear: both"></div>
-        <div>
+        <div style="margin-top: -10px">
             <ul data-role="listview" id="village-list" data-count-theme="b" data-inset="true">
                 <li data-role="list-divider">结果</li>
             </ul>
@@ -61,7 +79,7 @@
     var page = 0;
 
     function displayTable(response) {
-        if (response.code==0 && response.info && response.info.length > 0) {
+        if (response.code == 0 && response.info && response.info.length > 0) {
             for (var i in response.info) {
                 $("#village-div a").attr("href", "/factory/detailPage?factory_id=" + response.info[i].id);
                 $("#village-div #name").html(response.info[i].name);
@@ -88,7 +106,7 @@
         page = from;
         var village = $("#village-input option:selected").val();
         var orderFlag = $("#order-input").attr("checked");
-        var orderBy = (!!orderFlag)?'desc':'asc';
+        var orderBy = (!!orderFlag) ? 'desc' : 'asc';
         $.ajax({
             url: "/factory/list?ts=" + new Date().getTime(),
             dataType: "json",
