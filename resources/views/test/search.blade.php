@@ -17,23 +17,14 @@
     <div data-role="content" style="font-size: 10px;padding-top:0px">
         <div data-role="navbar" style="margin-top: 10px">
             <ul>
-                <li><a href="#" data-theme="a" class="ui-btn-active ui-state-persist">按乡镇</a></li>
-                <li><a href="/factory/searchPage" data-theme="a">按小类</a></li>
+                <li><a href="/factory/listPage" data-theme="a">按乡镇</a></li>
+                <li><a href="#" data-theme="a" class="ui-btn-active ui-state-persist">按小类</a>
+                </li>
             </ul>
         </div>
         <div data-role="fieldcontain">
-            <label for="village" style="font-size: 10px">乡镇:</label>
-            <select id="village-input" onchange="doSearch()" style="font-size: 10px">
-                <option value="">请选择...</option>
-                @foreach($village as $v)
-                    <option value="{{$v}}" style="font-size: 10px">{{$v}}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div data-role="fieldcontain" style="padding: 3px 0px">
-            <input id="order-input" type="checkbox" onchange="doSearch()"/>
-            <label for="order-input">按收藏数升序</label>
+            <label for="class-input" style="font-size: 10px">小类:</label>
+            <input id="class-input" onblur="doSearch()"/>
         </div>
 
         <div>
@@ -93,15 +84,14 @@
     }
 
     function nextPage() {
+
         var from = ++page;
         page = from;
-        var village = $("#village-input option:selected").val();
-        var orderFlag = $("#order-input").attr("checked");
-        var orderBy = (!!orderFlag) ? 'desc' : 'asc';
+        var classify = $("#class-input").val();
         $.ajax({
             url: "/factory/list?ts=" + new Date().getTime(),
             dataType: "json",
-            data: {page: from, town: village, order_by: orderBy},
+            data: {page: from, classify: classify},
             success: function (response) {
                 displayTable(response);
             }

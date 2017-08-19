@@ -17,17 +17,25 @@ Route::get('/', function () {
 
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/factory/detail', 'FactoryController@getFactoryDetail');
-
+Route::get('/factory/confirm', 'FactoryController@removeCollectionDialog');
 Route::get('/factory/list','FactoryController@getFactoryList');
 Route::get('/factory/search', 'FactoryController@searchFactory');
 Route::get('/factory/my', 'FactoryController@collectListPage');
 Route::any('/do/collection', 'FactoryController@doCollection');
-Route::post('/cancel/collection', 'FactoryController@doCollection');
+Route::get('/cancel/collection', 'FactoryController@doCollection');
 
 
+<<<<<<< HEAD
 Route::group([ 'middleware' => ['wechat.oauth']], function () {
     Route::any('/map/show', 'FactoryController@mapShow');
     Route::any('/test', 'TestController@test');
     Route::get('/factory/listPage', 'FactoryController@listPage');
     Route::get('/factory/detailPage', 'FactoryController@detailPage');
 });
+=======
+Route::any('/test', 'TestController@test');
+Route::get('/factory/listPage', 'FactoryController@listPage');
+Route::get('/factory/searchPage', 'FactoryController@searchPage');
+Route::get('/factory/detailPage', 'FactoryController@detailPage');
+
+>>>>>>> 2a1216da3b551cbe185581cc611d9b1b18c6412e
