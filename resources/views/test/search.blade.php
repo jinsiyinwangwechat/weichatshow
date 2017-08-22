@@ -11,8 +11,8 @@
 <div data-role="page" id="service-div">
     <div data-role="header" data-position="right" style="height: 42px" data-display="overlay">
         <h2>主页</h2>
-        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-icon="home" data-iconpos="notext">Menu</a>
-        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-icon="user" data-iconpos="notext">User</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-ajax="false" data-icon="home" data-iconpos="notext">Menu</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-ajax="false" data-icon="user" data-iconpos="notext">User</a>
     </div>
     <div data-role="content" style="font-size: 10px;padding-top:0px">
         <div data-role="navbar" style="margin-top: 10px">

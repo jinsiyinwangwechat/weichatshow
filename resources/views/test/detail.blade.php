@@ -12,8 +12,8 @@
 
     <div data-role="header" data-position="right" style="height: 42px" data-display="overlay">
         <h2>工厂详情</h2>
-        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-icon="home" data-iconpos="notext">Menu</a>
-        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-icon="user" data-iconpos="notext">User</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-ajax="false" data-icon="home" data-iconpos="notext">Menu</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-ajax="false" data-icon="user" data-iconpos="notext">User</a>
     </div>
     <input type="hidden" id="factory-id-input" value="{{$factoryId}}"/>
     <div data-role="content" style="font-size: 10px;">

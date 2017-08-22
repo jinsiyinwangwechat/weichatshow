@@ -10,14 +10,14 @@
 <div data-role="page" id="service-div">
     <div data-role="header" data-position="right" style="height: 42px" data-display="overlay">
         <h2>我的</h2>
-        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-icon="home" data-iconpos="notext">Menu</a>
-        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-icon="user" data-iconpos="notext">User</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/listPage" data-ajax="false" data-icon="home" data-iconpos="notext">Menu</a>
+        <a href="{{env('CURRENT_SERVER')}}/factory/my" data-ajax="false" data-icon="user" data-iconpos="notext">User</a>
     </div>
     <div data-role="content" style="font-size: 10px">
         <ul data-role="listview" id="village-list" data-count-theme="b" data-inset="true">
             @foreach($collections as $c)
                 <li>
-                    <a href="{{env('CURRENT_SERVER')}}/factory/detailPage?factory_id={{$c->id}}">{{$c->name}}</a>
+                    <a href="{{env('CURRENT_SERVER')}}/factory/detailPage?factory_id={{$c->id}}" data-ajax="false">{{$c->name}}</a>
                     <a href="{{env('CURRENT_SERVER')}}/factory/confirm?factory_id={{$c->id}}" lass="delete" data-transition="pop" data-icon="delete"></a>
                 </li>
             @endforeach
