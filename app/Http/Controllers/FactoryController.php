@@ -57,8 +57,8 @@ class FactoryController extends Controller
         $targetLatitude  = array_get($params, 'latitude');
         $targetLongitude = array_get($params, 'longitude');
         $factoryName     = array_get($params, 'name');
-        $targetLongitude = '116.412012';
-        $targetLatitude  = '39.984443';
+        //$targetLongitude = '116.412012';
+        //$targetLatitude  = '39.984443';
         $target          = $targetLongitude . ',' .$targetLatitude;
         $openid = $this->getOpenId();
 
@@ -139,10 +139,13 @@ class FactoryController extends Controller
         ]);
 
         $factoryId  = $request->get('factory_id');
-        //$openId = $this->getOpenId();
-        $openId = 'sdfsdfsdf';
+        $openId = $this->getOpenId();
+        //$openId = 'sdfsdfsdf';
 
         $this->factoryService->doCollection($factoryId, $openId);
+
+        return $this->outJsonFormat(true);
+
     }
 
 
