@@ -96,7 +96,7 @@ class FactoryService
         return $factoryInfo;
     }
 
-    public function getFactoryDetail($factoryId)
+    public function getFactoryDetail($factoryId, $openid)
     {
 
         $factoryInfo = $this->factoryRepository->getFactoryById($factoryId);
@@ -112,9 +112,14 @@ class FactoryService
         //获取大类小类
         $classifyInfo      = $this->factoryRepository->getClassify($factoryId);
 
-        $factoryInfo->pictures   = $factoryPic;
-        $factoryInfo->friendLink = $factoryFriendLink;
-        $factoryInfo->classify   = $classifyInfo;
+        $collection        = $this->factoryRepository->getCollectionList($openid);
+        $collection = json_encode($collection);
+        $collection = json_decode($collection, true);
+
+        $factoryInfo->pictures     = $factoryPic;
+        $factoryInfo->friendLink   = $factoryFriendLink;
+        $factoryInfo->classify     = $classifyInfo;
+        $factoryInfo->isCollection = in_array($factoryId, array_pluck($collection, 'id'));
 
         return $factoryInfo->toArray();
     }

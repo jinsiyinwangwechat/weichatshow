@@ -131,6 +131,7 @@ class FactoryController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function doCollection(Request $request)
     {
@@ -180,7 +181,7 @@ class FactoryController extends Controller
         //$openId = $this->getOpenId();
         $openId = 'sdfsdfsdf';
 
-        $result = $this->factoryService->getFactoryDetail($factoryId);
+        $result = $this->factoryService->getFactoryDetail($factoryId, $openId);
 
         return $this->outJsonFormat($result);
     }
