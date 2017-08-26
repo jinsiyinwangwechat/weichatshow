@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="{CHARSET}">
+    <meta charset="{CHARSET}" name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset("/assets/jquery/mobile/jquery.mobile-1.4.5.css")}}">
     <script type="text/javascript" src="{{URL::asset("/assets/jquery/jquery-1.8.3.min.js")}}"></script>
     <script type="text/javascript" src="{{URL::asset("/assets/jquery/mobile/jquery.mobile-1.4.5.js")}}"></script>
