@@ -89,7 +89,7 @@ class FactoryService
             DB::commit();
         }catch (\Exception $exception){
             DB::rollback();//事务回滚
-            Log::error('取消收藏失败，factory_id:' . $factoryId . 'openid:' . $openId. 'ERROR:' . json_encode($exception->ge));
+            Log::error('取消收藏失败，factory_id:' . $factoryId . 'openid:' . $openId. 'ERROR:' . json_encode($exception->getMessage()));
             throw new \Exception('取消收藏失败');
         }
 

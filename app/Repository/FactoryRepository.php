@@ -129,7 +129,7 @@ class FactoryRepository
     {
         $result = $this->collectionModel->query()
             ->where('factory_id', $factoryId)
-            ->where('open_id', $openId)
+            ->where('openid', $openId)
             ->delete();
         return true;
     }

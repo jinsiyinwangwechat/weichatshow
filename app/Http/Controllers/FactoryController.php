@@ -36,7 +36,7 @@ class FactoryController extends Controller
      * 我的收藏页面
      */
     public function collectListPage() {
-        $openid = 'sdfsdfsdf';
+        $openid = $this->getOpenId();
         $result = $this->factoryService->getCollectionList($openid);
         return view("test.my")->with('collections', $result);
     }
@@ -158,16 +158,17 @@ class FactoryController extends Controller
      */
     public function cancelCollection(Request $request)
     {
+        Log::info('取消收藏' . json_encode($request->all()));
         $this->validate($request, [
             'factory_id' => 'required'
         ]);
         $factoryId  = $request->get('factory_id');
-        //$openId = $this->getOpenId();
-        $openId = 'sdfsdfsdf';
+        $openId = $this->getOpenId();
+
 
         $result = $this->factoryService->cancelCollection($factoryId, $openId);
 
-        return $this->outJsonFormat($result);
+        return $this->outJsonFormat('取消成功');
     }
 
     public function getFactoryDetail(Request $request)

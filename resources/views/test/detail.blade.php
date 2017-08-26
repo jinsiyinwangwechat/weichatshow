@@ -104,10 +104,10 @@
     <div data-role="footer" data-position="fixed">
         <div class="ui-grid-b">
             <div class="ui-block-a">
-                <a href="#" id="make-phone" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-phone">打电话</a>
+                <a href="#"  id="make-phone" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-phone">打电话</a>
             </div>
             <div class="ui-block-b" style="text-align: center">
-                <a href="#" id = "go-there" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation">去这里</a>
+                <a href="#"  data-ajax="false"  id="go-there" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation">去这里</a>
             </div>
             <div class="ui-block-c" style="text-align: right">
                 <a href="javascript:collection()" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-star">收藏&nbsp;&nbsp;&nbsp;</a>
