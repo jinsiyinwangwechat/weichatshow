@@ -107,7 +107,7 @@
                 <a href="#" id="make-phone" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-phone">打电话</a>
             </div>
             <div class="ui-block-b" style="text-align: center">
-                <a href="http://m.amap.com/navi/?start=115.524137,38.242731&dest=115.519545,38.228472&destName=刘成测试地图选点&key=175cd59f097bc8498dd2e4e8f3868cd2" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation">去这里</a>
+                <a href="#" id = "go-there" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation">去这里</a>
             </div>
             <div class="ui-block-c" style="text-align: right">
                 <a href="javascript:collection()" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-star">收藏&nbsp;&nbsp;&nbsp;</a>
@@ -160,6 +160,7 @@
         $("#contact").html(factory.connect1 + ((!!factory.connect2)?"&nbsp;&nbsp;" + factory.connect2:""))
         $("#telephone").html(factory.telephone + ((!!factory.telephone2)?"<br/>" + factory.telephone2:""));
         $("#make-phone").attr("href", "tel:" + factory.telephone);
+        $("#go-there").attr("href", "{{env('CURRENT_SERVER')}}/map/show?latitude=" + factory.lat +"&longitude=" + factory.lon +"&name=" + factory.name);
         $("#weixin").html(factory.weichat1);
 
         $("#code").html(factory.id);

@@ -95,7 +95,7 @@ class FactoryRepository
             ->orderBy('collection', 'desc')
             ->get();
 
-        $searchResult->classify = $classify;
+        //$searchResult->classify = $classify;
 
         return $searchResult;
 

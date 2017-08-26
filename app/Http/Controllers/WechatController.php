@@ -81,27 +81,26 @@ class WechatController extends Controller
                     return ;
                     break;
                 case 'text':
+                    $openid = $message->FromUserName;
                     $params = [
                         'classify' => $message->Content
                     ];
 
                     $factoryInfo = $this->factoryService->searchFactory($params);
+                    $factoryInfo = $factoryInfo[0];
 
                     $factoryId       = array_get($factoryInfo, 'id', 0);
+                    $factoryInfo     = $this->factoryService->getFactoryDetail($factoryId, $openid);
                     $factoryName     = array_get($factoryInfo, 'name', '');
                     $factoryclassify = array_get($factoryInfo, 'classify', '');
 
-                    if ($factoryId == 0 ){
-                        return '没有找到相关企业,我们正在努力中，敬请期待';
-                    }
 
 
-                    //$text = new Text(['content' => '您好！overtrue。']);
-                    $templateId = 'K0gJlkgXoCoKB72hXHryP_gU5CoTYSHLCUY3Us7V3wQ';
+                    $templateId = 'XuwstF4blViu-dFi0yTTk-mCxvRZeSf9kEEV37tUFmM';
                     $url = 'http://liucheng.nat300.top/test?params=' . $message->Content;
                     $classify = "\n\n";
                     foreach ($factoryclassify as $item){
-                        $classify = $classify . $item ."\n\n";
+                        $classify = $classify . array_get($item, 'small_classify') ."\n\n";
                     }
                     $data = [
                         'factory_name' => $factoryName . "\n\n",
@@ -113,7 +112,7 @@ class WechatController extends Controller
                     $notice = $this->wechat->notice;
                     $result = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
 
-                    return '^_^';
+                    return '以上为根据您搜索条件查询到的首选工厂名片';
                     break;
                 case 'image':
                     return '收到图片消息';

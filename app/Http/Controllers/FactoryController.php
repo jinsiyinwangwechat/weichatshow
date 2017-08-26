@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Service\FactoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
@@ -113,7 +114,7 @@ class FactoryController extends Controller
      */
     public function searchFactory(Request $request)
     {
-
+        Log::info('===检索===' . json_encode($request->all()));
         $this->validate($request, [
             'classify' => 'required'
         ],[
@@ -178,8 +179,8 @@ class FactoryController extends Controller
         ]);
 
         $factoryId  = $request->get('factory_id');
-        //$openId = $this->getOpenId();
-        $openId = 'sdfsdfsdf';
+        $openId = $this->getOpenId();
+       // $openId = 'sdfsdfsdf';
 
         $result = $this->factoryService->getFactoryDetail($factoryId, $openId);
 
