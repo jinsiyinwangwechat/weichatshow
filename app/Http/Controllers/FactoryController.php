@@ -115,13 +115,16 @@ class FactoryController extends Controller
     public function searchFactory(Request $request)
     {
         Log::info('===检索===' . json_encode($request->all()));
-        $this->validate($request, [
-            'classify' => 'required'
-        ],[
-            'classify.required' => '小类必须传'
-            ]);
+//        $this->validate($request, [
+//            'classify' => 'required'
+//        ],[
+//            'classify.required' => '小类必须传'
+//            ]);
 
         $params = $request->all();
+        if(empty($params)){
+            return $this->outJsonFormat([]);
+        }
 
         $result = $this->factoryService->searchFactory($params);
 

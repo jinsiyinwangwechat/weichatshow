@@ -17,14 +17,14 @@
     <div data-role="content" style="font-size: 10px;padding-top:0px">
         <div data-role="navbar" style="margin-top: 10px">
             <ul>
-                <li><a href="#" data-theme="a" class="ui-btn-active ui-state-persist">按乡镇</a></li>
-                <li><a href="/factory/searchPage" data-theme="a">按小类</a></li>
+                <li><a href="#" data-theme="a" class="ui-btn-active ui-state-persist">筛选</a></li>
+                <li><a href="/factory/searchPage" data-theme="a">检索</a></li>
             </ul>
         </div>
         <div data-role="fieldcontain">
             <label for="village" style="font-size: 10px">乡镇:</label>
             <select id="village-input" onchange="doSearch()" style="font-size: 10px">
-                <option value="">请选择...</option>
+                <option value="">全部...</option>
                 @foreach($village as $v)
                     <option value="{{$v}}" style="font-size: 10px">{{$v}}</option>
                 @endforeach

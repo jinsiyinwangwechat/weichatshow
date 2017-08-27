@@ -17,8 +17,8 @@
     <div data-role="content" style="font-size: 10px;padding-top:0px">
         <div data-role="navbar" style="margin-top: 10px">
             <ul>
-                <li><a href="/factory/listPage" data-theme="a">按乡镇</a></li>
-                <li><a href="#" data-theme="a" class="ui-btn-active ui-state-persist">按小类</a>
+                <li><a href="/factory/listPage" data-theme="a">筛选</a></li>
+                <li><a href="#" data-theme="a" class="ui-btn-active ui-state-persist">检索</a>
                 </li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
         </div>
 
         <div data-role="fieldcontain">
-            <input type="button" onclick="search()" value="检索"/>
+            <input type="button" onclick="search()" value="确定"/>
         </div>
 
         <div>
@@ -64,6 +64,11 @@
 <script type="text/javascript">
 
     var page = 0;
+    function search() {
+        page = -1;
+        $("#village-list li:gt(0)").remove();
+        nextPage();
+    }
 
     function displayTable(response) {
         if (response.code == 0 && response.info && response.info.length > 0) {
@@ -102,11 +107,6 @@
         })
     }
 
-    function search() {
-        page = -1;
-        $("#village-list li:gt(0)").remove();
-        nextPage();
-    }
 
     function scrollPage() {
         $(window).scroll(function () {
@@ -128,6 +128,7 @@
     $(function () {
         $(window).unbind('scroll');
         scrollPage();
+        nextPage();
     });
 
 </script>
