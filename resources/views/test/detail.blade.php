@@ -110,7 +110,8 @@
                 <a href="#"  data-ajax="false"  id="go-there" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation">去这里</a>
             </div>
             <div class="ui-block-c" style="text-align: right">
-                <a href="javascript:collection()" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-star">收藏&nbsp;&nbsp;&nbsp;</a>
+                <a id="clct" href="javascript:collection()" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-star">
+                </a>
             </div>
         </div>
 
@@ -128,6 +129,7 @@
             success : function(response) {
                 if(response && response.code==0) {
                     alert("添加收藏成功")
+                    window.location.reload();
                 } else {
                     alert("添加收藏失败")
                 }
@@ -162,6 +164,7 @@
         $("#make-phone").attr("href", "tel:" + factory.telephone);
         $("#go-there").attr("href", "{{env('CURRENT_SERVER')}}/map/show?latitude=" + factory.lat +"&longitude=" + factory.lon +"&name=" + factory.name);
         $("#weixin").html(factory.weichat1);
+        $("#clct").html((factory.isCollection)?"已收藏&nbsp;":"收藏&nbsp;");
 
         $("#code").html(factory.id);
         $("#town").html(factory.town + "&nbsp;&nbsp;" + factory.village);

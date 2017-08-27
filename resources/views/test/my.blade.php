@@ -33,7 +33,10 @@
             type : 'get',
             dataType : 'json',
             success : function(response) {
-
+                    if(response.code == 0) {
+                        alert('取消成功');
+                    }
+                    window.location.href = "{{env('CURRENT_SERVER')}}/factory/my";
             }
         })
     }

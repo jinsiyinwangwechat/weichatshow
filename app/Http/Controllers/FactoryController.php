@@ -180,8 +180,8 @@ class FactoryController extends Controller
         ]);
 
         $factoryId  = $request->get('factory_id');
-        $openId = $this->getOpenId();
-       // $openId = 'sdfsdfsdf';
+       // $openId = $this->getOpenId();
+        $openId = 'sdfsdfsdf';
 
         $result = $this->factoryService->getFactoryDetail($factoryId, $openId);
 

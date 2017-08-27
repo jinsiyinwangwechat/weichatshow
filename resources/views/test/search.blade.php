@@ -24,7 +24,11 @@
         </div>
         <div data-role="fieldcontain">
             <label for="class-input" style="font-size: 10px">小类:</label>
-            <input id="class-input" onblur="doSearch()"/>
+            <input id="class-input"/>
+        </div>
+
+        <div data-role="fieldcontain">
+            <input type="button" onclick="search()" value="检索"/>
         </div>
 
         <div>
@@ -89,7 +93,7 @@
         page = from;
         var classify = $("#class-input").val();
         $.ajax({
-            url: "/factory/list?ts=" + new Date().getTime(),
+            url: "/factory/search?ts=" + new Date().getTime(),
             dataType: "json",
             data: {page: from, classify: classify},
             success: function (response) {
@@ -98,7 +102,7 @@
         })
     }
 
-    function doSearch() {
+    function search() {
         page = -1;
         $("#village-list li:gt(0)").remove();
         nextPage();
