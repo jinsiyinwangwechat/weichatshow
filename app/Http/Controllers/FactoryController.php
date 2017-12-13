@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Service\FactoryService;
+use EasyWeChat\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -183,8 +184,8 @@ class FactoryController extends Controller
         ]);
 
         $factoryId  = $request->get('factory_id');
-       // $openId = $this->getOpenId();
-        $openId = 'sdfsdfsdf';
+        $openId = $this->getOpenId();
+       // $openId = 'sdfsdfsdf';
 
         $result = $this->factoryService->getFactoryDetail($factoryId, $openId);
 

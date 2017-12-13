@@ -22,14 +22,15 @@ Route::get('/factory/list','FactoryController@getFactoryList');
 Route::get('/factory/search', 'FactoryController@searchFactory');
 Route::get('/factory/my', 'FactoryController@collectListPage');
 Route::any('/do/collection', 'FactoryController@doCollection');
-Route::get('/cancel/collection', 'FactoryController@cancelCollection');
-Route::get('/factory/listPage', 'FactoryController@listPage');
-Route::get('/factory/searchPage', 'FactoryController@searchPage');
+Route::any('/menu', 'FactoryController@menu');
 
 Route::get('/factory/detailPage', 'FactoryController@detailPage');
 Route::group([ 'middleware' => ['wechat.oauth']], function () {
     Route::any('/map/show', 'FactoryController@mapShow');
     Route::any('/test', 'TestController@test');
+    Route::get('/cancel/collection', 'FactoryController@cancelCollection');
+    Route::get('/factory/listPage', 'FactoryController@listPage');
+    Route::get('/factory/searchPage', 'FactoryController@searchPage');
 
    // Route::get('/factory/searchPage', 'FactoryController@searchPage');
 

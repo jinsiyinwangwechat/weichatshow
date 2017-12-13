@@ -50,6 +50,9 @@ class FactoryRepository
 
         $skip = $page > 1 ? ($page - 1) * $perPage : 0;
         $conditions  = array_only($params, ['town','village']);
+        if (empty($conditions['town'])){
+            $conditions['town'] = '测试乡镇';
+        }
 
         $query = $this->factoryModel->query();
 
@@ -61,7 +64,7 @@ class FactoryRepository
                ->take($perPage)
                ->get();
 
-        Log::info('查询工厂列表结束,参数:' . json_encode($params));
+        Log::info('查询工厂列表结束,参数:' . json_encode($params) . "===" .json_encode($factoryList));
 
         return $factoryList;
     }
